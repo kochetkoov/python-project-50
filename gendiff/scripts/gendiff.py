@@ -26,6 +26,7 @@ def generate_diff(file_path1, file_path2):
 
     return "{\n" + "\n".join(diff) + "\n}"
 
+
 def main():
     parser = argparse.ArgumentParser(
         description='Compares two configuration files and shows a difference.'
@@ -42,4 +43,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
