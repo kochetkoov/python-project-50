@@ -1,14 +1,21 @@
 [tool.poetry]
-name = "hexlet-code"
+name = "gendiff"
 version = "0.1.0"
 description = ""
 authors = ["Алексей <kochetkoov.ao@mail.ru>"]
 readme = "README.md"
+packages = [
+  { include = "gendiff" },
+]
+
 
 [tool.poetry.dependencies]
 python = "^3.12"
 argparse = "^1.4.0"
+flake8 = "^7.1.1"
 
+[tool.poetry.scripts]
+gendiff = "gendiff.scripts.gendiff:main"
 
 [build-system]
 requires = ["poetry-core"]
