@@ -1,5 +1,7 @@
 dist/
 .venv
 .idea
-
+tests/__pycache__
+gendiff/__pycache__
+gendiff/scripts/__pycache__
 
