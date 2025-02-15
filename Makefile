@@ -16,3 +16,6 @@ check:
 
 test-coverage:
 	poetry run pytest --cov=gendiff --cov-report=xml
+
+ruff:
+	ruff check --fix --select I

@@ -3,7 +3,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/40413e95b9fc7998f651/maintainability)](https://codeclimate.com/github/kochetkoov/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/40413e95b9fc7998f651/test_coverage)](https://codeclimate.com/github/kochetkoov/python-project-50/test_coverage)
 
-# The Gendiff Project
+## The Gendiff Project
 
 ### This project was made to help to find out the difference between two files and make this process easier and faster, enjoy!
 

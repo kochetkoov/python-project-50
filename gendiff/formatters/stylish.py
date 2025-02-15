@@ -68,9 +68,9 @@ STATUS_HANDLERS = {
 }
 
 
-def format_stylish(diff, depth=0):
+def format_stylish(diff, depth=0, indent_char=' ', indent_size=4):
     """Formatting the output of the diff with stylish formatter"""
-    indent = '    ' * depth
+    indent = indent_char * (depth * indent_size)
     result = []
 
     for key, info in diff.items():
@@ -80,4 +80,4 @@ def format_stylish(diff, depth=0):
         else:
             raise ValueError("Invalid status in diff")
 
-    return '\n'.join(result)
+    return f"{{\n{'\n'.join(result)}\n}}"
