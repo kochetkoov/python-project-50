@@ -1,43 +1,6 @@
-from unittest.mock import patch
-
 import pytest
 
 from gendiff.gendiff import generate_diff
-
-
-@pytest.fixture
-def mock_generate_diff():
-    with patch('gendiff.gendiff.format_plain') as mock_plain, patch('gendiff.gendiff.format_json') as mock_json:
-        yield mock_plain, mock_json
-
-
-def test_generate_diff_known_formats(mock_generate_diff):
-    mock_plain, mock_json = mock_generate_diff
-
-    # Мокаем возвращаемые значения для форматирования
-    mock_plain.return_value = "Plain format result"
-    mock_json.return_value = '{"json": "result"}'
-
-    # Проверка для формата 'plain'
-    result = generate_diff("file1.yaml", "file2.yaml", format_name='plain')
-    assert result == "Plain format result"
-    mock_plain.assert_called_once_with({'key': 'value'})  # Проверяем, что mock_plain был вызван с правильным аргументом
-
-    # Проверка для формата 'json'
-    result = generate_diff("file1.yaml", "file2.yaml", format_name='json')
-    assert result == '{"json": "result"}'
-    mock_json.assert_called_once_with({'key': 'value'})  # Проверяем, что mock_json был вызван с правильным аргументом
-
-
-def test_generate_diff_invalid_format():
-    # Тестируем для неизвестного формата, ожидаем выброс исключения
-    with pytest.raises(ValueError, match="Unknown format: invalid_format"):
-        generate_diff("file1.yaml", "file2.yaml", format_name='invalid_format')
-
-
-def load_expected(file_name):
-    with open(f'tests/fixtures/{file_name}', 'r') as file:
-        return file.read().strip()
 
 
 @pytest.mark.parametrize(
@@ -92,3 +55,34 @@ def test_generate_diff(file1, file2, formatting, expected_file):
     file2_path = f'tests/fixtures/{file2}'
     expected = load_expected(expected_file)
     assert generate_diff(file1_path, file2_path, formatting) == expected
+
+
+@pytest.mark.parametrize(
+    "file1, file2, format_name, expected_file",
+    [
+        ('non_existent_file.json', 'file3.json', 'stylish', 'result_generate_diff_stylish_2.txt'),
+        ('file1.json', 'non_existent_file.json', 'plain', 'result_generate_diff_plain.txt'),
+        ('file1.json', 'file2.json', 'invalid_format', 'result_invalid_format.txt')  # Некорректный формат
+    ]
+)
+
+
+def test_generate_diff_invalid_inputs(file1, file2, format_name, expected_file):
+    """Тестирование на некорректные входные данные (несуществующие файлы, неверный формат)"""
+    file1_path = f'tests/fixtures/{file1}'
+    file2_path = f'tests/fixtures/{file2}'
+
+    if format_name == 'invalid_format':
+        # Проверка на неправильный формат
+        with pytest.raises(ValueError, match="Unknown format: invalid_format"):
+            generate_diff(file1_path, file2_path, format_name)
+    else:
+        # Проверка на несуществующие файлы
+        with pytest.raises(FileNotFoundError):
+            generate_diff(file1_path, file2_path, format_name)
+
+
+def load_expected(expected_file):
+    with open(f'tests/fixtures/{expected_file}', 'r') as file:
+        return file.read()
+

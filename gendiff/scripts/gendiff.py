@@ -1,4 +1,4 @@
-from cli import parse_arguments
+from gendiff.scripts.cli import parse_arguments
 
 from gendiff.gendiff import generate_diff
 
