@@ -12,7 +12,7 @@ Use CLI and type this command:
 ``` sh
 gendiff -h
 ```
- [![asciicast](https://asciinema.org/a/yqm2SFser6KZmcvhUHNfSh9Jf.svg)(https://asciinema.org/a/yqm2SFser6KZmcvhUHNfSh9Jf)
+ [![asciicast](https://asciinema.org/a/yqm2SFser6KZmcvhUHNfSh9Jf.svg)
 
 ## To compare two files (JSON or YAML) use this command:
 ``` sh
