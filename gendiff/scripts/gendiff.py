@@ -1,5 +1,3 @@
-import argparse
-
 from cli import parse_arguments
 
 from gendiff.gendiff import generate_diff

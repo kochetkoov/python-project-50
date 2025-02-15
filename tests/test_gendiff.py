@@ -1,6 +1,38 @@
+from unittest.mock import patch
+
 import pytest
 
 from gendiff.gendiff import generate_diff
+
+
+@pytest.fixture
+def mock_generate_diff():
+    with patch('gendiff.gendiff.format_plain') as mock_plain, patch('gendiff.gendiff.format_json') as mock_json:
+        yield mock_plain, mock_json
+
+
+def test_generate_diff_known_formats(mock_generate_diff):
+    mock_plain, mock_json = mock_generate_diff
+
+    # Мокаем возвращаемые значения для форматирования
+    mock_plain.return_value = "Plain format result"
+    mock_json.return_value = '{"json": "result"}'
+
+    # Проверка для формата 'plain'
+    result = generate_diff("file1.yaml", "file2.yaml", format_name='plain')
+    assert result == "Plain format result"
+    mock_plain.assert_called_once_with({'key': 'value'})  # Проверяем, что mock_plain был вызван с правильным аргументом
+
+    # Проверка для формата 'json'
+    result = generate_diff("file1.yaml", "file2.yaml", format_name='json')
+    assert result == '{"json": "result"}'
+    mock_json.assert_called_once_with({'key': 'value'})  # Проверяем, что mock_json был вызван с правильным аргументом
+
+
+def test_generate_diff_invalid_format():
+    # Тестируем для неизвестного формата, ожидаем выброс исключения
+    with pytest.raises(ValueError, match="Unknown format: invalid_format"):
+        generate_diff("file1.yaml", "file2.yaml", format_name='invalid_format')
 
 
 def load_expected(file_name):
@@ -53,6 +85,8 @@ def load_expected(file_name):
          'json', 'result_one_empty_file_json.txt')
     ]
 )
+
+
 def test_generate_diff(file1, file2, formatting, expected_file):
     file1_path = f'tests/fixtures/{file1}'
     file2_path = f'tests/fixtures/{file2}'
