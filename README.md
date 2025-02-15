@@ -36,7 +36,7 @@ gendiff -f json filepath1 filepath2 - to show json output
  ![asciicast](https://asciinema.org/a/3Q0Q5SQGdzIsS7vCrIlb0qRzo.svg)
 
 ## Here's the example of formattind diff into JSON format:
- ![asciicast](https://asciinema.org/a/kpQfZ2qY5gIzE9n7ELjlmnWvs.svg)
+![asciicast](https://asciinema.org/a/kpQfZ2qY5gIzE9n7ELjlmnWvs.svg)
 
 ### Installation requirements and instruction.
 Installation requirements:
