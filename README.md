@@ -1,5 +1,6 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/kochetkoov/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/kochetkoov/python-project-50/actions/hexlet-check.yml) 
+[![CI](https://github.com/kochetkoov/python-project-50/actions/workflows/ci.yml/badge.svg)](https://github.com/kochetkoov/python-project-50/actions/workflows/ci.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/40413e95b9fc7998f651/maintainability)](https://codeclimate.com/github/kochetkoov/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/40413e95b9fc7998f651/test_coverage)](https://codeclimate.com/github/kochetkoov/python-project-50/test_coverage)
 
