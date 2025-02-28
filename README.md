@@ -1,5 +1,6 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/kochetkoov/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/kochetkoov/python-project-50/actions/hexlet-check.yml) 
+[![CI](https://github.com/kochetkoov/python-project-50/actions/workflows/ci.yml/badge.svg)](https://github.com/kochetkoov/python-project-50/actions/workflows/ci.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/40413e95b9fc7998f651/maintainability)](https://codeclimate.com/github/kochetkoov/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/40413e95b9fc7998f651/test_coverage)](https://codeclimate.com/github/kochetkoov/python-project-50/test_coverage)
 
@@ -12,7 +13,7 @@ Use CLI and type this command:
 ``` sh
 gendiff -h
 ```
-[![asciicast](https://asciinema.org/a/yqm2SFser6KZmcvhUHNfSh9Jf)
+ ![asciicast](https://asciinema.org/a/yqm2SFser6KZmcvhUHNfSh9Jf.svg)
 
 ## To compare two files (JSON or YAML) use this command:
 ``` sh
@@ -30,13 +31,13 @@ gendiff -f json filepath1 filepath2 - to show json output
 ```
 
 ## Here's the example of 'stylish' comparing JSON and YAML files:
-[![asciicast](https://asciinema.org/a/H6xU2wSSLv08NDAtmkrkEWUXj)
+ ![asciicast](https://asciinema.org/a/H6xU2wSSLv08NDAtmkrkEWUXj.svg)
 
 ## Here's the example of 'plain' comparing JSON and YAML files:
-[![asciicast](https://asciinema.org/a/3Q0Q5SQGdzIsS7vCrIlb0qRzo)
+ ![asciicast](https://asciinema.org/a/3Q0Q5SQGdzIsS7vCrIlb0qRzo.svg)
 
 ## Here's the example of formattind diff into JSON format:
-[![asciicast](https://asciinema.org/a/kpQfZ2qY5gIzE9n7ELjlmnWvs)
+![asciicast](https://asciinema.org/a/kpQfZ2qY5gIzE9n7ELjlmnWvs.svg)
 
 ### Installation requirements and instruction.
 Installation requirements:
