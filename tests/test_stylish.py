@@ -1,13 +1,5 @@
 import pytest
-from gendiff.formatters.stylish import (
-    format_value,
-    handle_unchanged,
-    handle_added,
-    handle_removed,
-    handle_updated,
-    handle_nested,
-    format_stylish
-)
+from gendiff.formatters.stylish import format_value
 
 
 def test_format_value():

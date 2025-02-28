@@ -1,5 +1,6 @@
 import pytest
-
+from unittest import mock
+from gendiff.scripts.gendiff import main
 from gendiff.gendiff import generate_diff
 
 
@@ -54,7 +55,9 @@ def test_generate_diff(file1, file2, formatting, expected_file):
     file1_path = f'tests/fixtures/{file1}'
     file2_path = f'tests/fixtures/{file2}'
     expected = load_expected(expected_file)
-    assert generate_diff(file1_path, file2_path, formatting) == expected
+    result = generate_diff(file1_path, file2_path, formatting)
+
+    assert result == expected
 
 
 @pytest.mark.parametrize(
@@ -81,6 +84,15 @@ def test_generate_diff_invalid_inputs(file1, file2, format_name, expected_file):
         with pytest.raises(FileNotFoundError):
             generate_diff(file1_path, file2_path, format_name)
 
+
+@pytest.mark.parametrize(
+    "mock_args, expected_file",
+    [
+        (["gendiff", "file1.json", "file2.json", "-f", "stylish"], "result_generate_diff_stylish_2.txt"),
+        (["gendiff", "file1.json", "file2.json", "-f", "plain"], "result_identical_diff_plain.txt"),
+        (["gendiff", "file1.json", "file2.json", "-f", "json"], "result_generate_diff_json.txt")
+    ]
+)
 
 def load_expected(expected_file):
     with open(f'tests/fixtures/{expected_file}', 'r') as file:
