@@ -13,7 +13,7 @@ Use CLI and type this command:
 ``` sh
 gendiff -h
 ```
- ![asciicast](https://asciinema.org/a/yqm2SFser6KZmcvhUHNfSh9Jf.svg)
+ ![asciicast](https://asciinema.org/a/ZVKTfWWXV4BLoLa7tXMLXbIek.svg)
 
 ## To compare two files (JSON or YAML) use this command:
 ``` sh
@@ -31,13 +31,12 @@ gendiff -f json filepath1 filepath2 - to show json output
 ```
 
 ## Here's the example of 'stylish' comparing JSON and YAML files:
- ![asciicast](https://asciinema.org/a/H6xU2wSSLv08NDAtmkrkEWUXj.svg)
+ ![asciicast](https://asciinema.org/a/juLQAMDm2NSO4wevJaa5zrGlQ.svg)
 
 ## Here's the example of 'plain' comparing JSON and YAML files:
- ![asciicast](https://asciinema.org/a/3Q0Q5SQGdzIsS7vCrIlb0qRzo.svg)
-
+![asciicast](https://asciinema.org/a/TRYAArR06rO9helgpsKbWqIkv.svg)
 ## Here's the example of formattind diff into JSON format:
-![asciicast](https://asciinema.org/a/kpQfZ2qY5gIzE9n7ELjlmnWvs.svg)
+![asciicast](https://asciinema.org/a/yAVYjZwDFlBbEKZs5O3Nok4od.svg)
 
 ### Installation requirements and instruction.
 Installation requirements:
