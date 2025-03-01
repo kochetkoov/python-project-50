@@ -4,8 +4,7 @@ import pytest
 
 from gendiff.gendiff import generate_diff
 
-# Глобальная переменная для директории с фикстурами
-FIXTURES_DIR = Path(__file__).parent / "tests" / "fixtures"
+FIXTURES_DIR = Path(__file__).parent / 'fixtures'
 
 @pytest.mark.parametrize(
     "file1, file2, formatting, expected_file",
@@ -52,20 +51,38 @@ FIXTURES_DIR = Path(__file__).parent / "tests" / "fixtures"
          'json', 'result_one_empty_file_json.txt')
     ]
 )
+def test_generate_diff(file1, file2, formatting, expected_file):
+    file1_path = FIXTURES_DIR / file1
+    file2_path = FIXTURES_DIR / file2
+    expected = load_expected(expected_file)
+    result = generate_diff(file1_path, file2_path, formatting)
 
-def test_generate_diff_invalid_inputs(file1, file2, formatting, expected_file):
+    assert result == expected
+
+@pytest.mark.parametrize(
+    "file1, file2, format_name, expected_file",
+    [
+        ('non_existent_file.json', 'file3.json', 'stylish', 'result_generate_diff_stylish_2.txt'),
+        ('file1.json', 'non_existent_file.json', 'plain', 'result_generate_diff_plain.txt'),
+        ('file1.json', 'file2.json', 'invalid_format', 'result_invalid_format.txt')  # Некорректный формат
+    ]
+)
+
+
+def test_generate_diff_invalid_inputs(file1, file2, format_name, expected_file):
     """Тестирование на некорректные входные данные (несуществующие файлы, неверный формат)"""
     file1_path = FIXTURES_DIR / file1
     file2_path = FIXTURES_DIR / file2
 
-    if formatting == 'invalid_format':
+    if format_name == 'invalid_format':
         # Проверка на неправильный формат
         with pytest.raises(ValueError, match="Unknown format: invalid_format"):
-            generate_diff(file1_path, file2_path, formatting)
+            generate_diff(file1_path, file2_path, format_name)
     else:
         # Проверка на несуществующие файлы
         with pytest.raises(FileNotFoundError):
-            generate_diff(file1_path, file2_path, formatting)
+            generate_diff(file1_path, file2_path, format_name)
+
 
 def load_expected(expected_file):
     expected_file_path = FIXTURES_DIR / expected_file
