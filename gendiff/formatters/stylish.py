@@ -6,7 +6,7 @@ def format_value(value, depth=0):
         return 'null'
     elif isinstance(value, dict):
         lines = []
-        for k, v in value.items():
+        for k, v in sorted(value.items()):
             formatted_value = format_value(v, depth + 1)
             lines.append(f"{'    ' * (depth + 2)}{k}: {formatted_value}")
         return f"{{\n{'\n'.join(lines)}\n{'    ' * (depth + 1)}}}"
