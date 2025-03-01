@@ -1,4 +1,5 @@
 import pytest
+
 from gendiff.formatters.stylish import format_value
 
 

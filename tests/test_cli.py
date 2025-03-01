@@ -1,6 +1,8 @@
 import sys
-import pytest
 from unittest import mock
+
+import pytest
+
 from gendiff.scripts.cli import parse_arguments
 
 

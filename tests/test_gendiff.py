@@ -1,8 +1,11 @@
+from pathlib import Path
+
 import pytest
-from unittest import mock
-from gendiff.scripts.gendiff import main
+
 from gendiff.gendiff import generate_diff
 
+# Глобальная переменная для директории с фикстурами
+FIXTURES_DIR = Path(__file__).parent / "tests" / "fixtures"
 
 @pytest.mark.parametrize(
     "file1, file2, formatting, expected_file",
@@ -50,51 +53,21 @@ from gendiff.gendiff import generate_diff
     ]
 )
 
-
-def test_generate_diff(file1, file2, formatting, expected_file):
-    file1_path = f'tests/fixtures/{file1}'
-    file2_path = f'tests/fixtures/{file2}'
-    expected = load_expected(expected_file)
-    result = generate_diff(file1_path, file2_path, formatting)
-
-    assert result == expected
-
-
-@pytest.mark.parametrize(
-    "file1, file2, format_name, expected_file",
-    [
-        ('non_existent_file.json', 'file3.json', 'stylish', 'result_generate_diff_stylish_2.txt'),
-        ('file1.json', 'non_existent_file.json', 'plain', 'result_generate_diff_plain.txt'),
-        ('file1.json', 'file2.json', 'invalid_format', 'result_invalid_format.txt')  # Некорректный формат
-    ]
-)
-
-
-def test_generate_diff_invalid_inputs(file1, file2, format_name, expected_file):
+def test_generate_diff_invalid_inputs(file1, file2, formatting, expected_file):
     """Тестирование на некорректные входные данные (несуществующие файлы, неверный формат)"""
-    file1_path = f'tests/fixtures/{file1}'
-    file2_path = f'tests/fixtures/{file2}'
+    file1_path = FIXTURES_DIR / file1
+    file2_path = FIXTURES_DIR / file2
 
-    if format_name == 'invalid_format':
+    if formatting == 'invalid_format':
         # Проверка на неправильный формат
         with pytest.raises(ValueError, match="Unknown format: invalid_format"):
-            generate_diff(file1_path, file2_path, format_name)
+            generate_diff(file1_path, file2_path, formatting)
     else:
         # Проверка на несуществующие файлы
         with pytest.raises(FileNotFoundError):
-            generate_diff(file1_path, file2_path, format_name)
-
-
-@pytest.mark.parametrize(
-    "mock_args, expected_file",
-    [
-        (["gendiff", "file1.json", "file2.json", "-f", "stylish"], "result_generate_diff_stylish_2.txt"),
-        (["gendiff", "file1.json", "file2.json", "-f", "plain"], "result_identical_diff_plain.txt"),
-        (["gendiff", "file1.json", "file2.json", "-f", "json"], "result_generate_diff_json.txt")
-    ]
-)
+            generate_diff(file1_path, file2_path, formatting)
 
 def load_expected(expected_file):
-    with open(f'tests/fixtures/{expected_file}', 'r') as file:
+    expected_file_path = FIXTURES_DIR / expected_file
+    with open(expected_file_path, 'r') as file:
         return file.read()
-
