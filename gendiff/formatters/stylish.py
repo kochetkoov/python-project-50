@@ -68,7 +68,7 @@ STATUS_HANDLERS = {
 }
 
 
-def format_stylish(diff, depth=0, indent_char=' ', indent_size=4):
+def format_stylish(diff, depth=0, indent_char='     ', indent_size=4):
     """Formatting the output of the diff with stylish formatter"""
     indent = indent_char * (depth * indent_size)
     result = []
