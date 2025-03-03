@@ -80,4 +80,4 @@ def format_stylish(diff, depth=0, indent_char=' ', indent_size=4):
         else:
             raise ValueError("Invalid status in diff")
 
-    return '\n'.join(result)
+    return f"{{\n{'\n'.join(result)}\n}}"
