@@ -83,7 +83,6 @@ def test_generate_diff_invalid_inputs(file1, file2, format_name, expected_file):
     """Тестирование на некорректные входные данные"""
     file1_path = FIXTURES_DIR / file1
     file2_path = FIXTURES_DIR / file2
-
     if format_name == 'invalid_format':
         # Проверка на неправильный формат
         with pytest.raises(ValueError, match="Unknown format: invalid_format"):
