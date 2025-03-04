@@ -80,9 +80,9 @@ def test_generate_diff_invalid_inputs(file1, file2, format_name, expected_file):
     """Тестирование на некорректные входные данные"""
     file1_path = FIXTURES_DIR / file1
     file2_path = FIXTURES_DIR / file2
-    if format_name == 'invalid_format': # Неправильный формат
+    if format_name == 'invalid_format':  # Неправильный формат
         with pytest.raises(ValueError, match="Unknown format: invalid_format"):
             generate_diff(file1_path, file2_path, format_name)
     else:
-        with pytest.raises(FileNotFoundError): # Нет файла
+        with pytest.raises(FileNotFoundError):  # Нет файла
             generate_diff(file1_path, file2_path, format_name)
