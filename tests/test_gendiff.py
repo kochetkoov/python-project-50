@@ -8,8 +8,7 @@ FIXTURES_DIR = Path(__file__).parent / 'fixtures'
 
 
 def load_expected(expected_file):
-    expected_file_path = FIXTURES_DIR / expected_file
-    with open(expected_file_path, 'r') as file:
+    with open(expected_file, 'r') as file:
         return file.read().strip()
 
 
@@ -61,9 +60,9 @@ def load_expected(expected_file):
 def test_generate_diff(file1, file2, formatting, expected_file):
     file1_path = FIXTURES_DIR / file1
     file2_path = FIXTURES_DIR / file2
-    expected = load_expected(expected_file)
+    res_path = FIXTURES_DIR / expected_file
     result = generate_diff(file1_path, file2_path, formatting)
-    assert result == expected
+    assert result == load_expected(res_path)
 
 
 @pytest.mark.parametrize(
@@ -77,17 +76,13 @@ def test_generate_diff(file1, file2, formatting, expected_file):
          'invalid_format', 'result_invalid_format.txt')
     ]
 )
-
-
 def test_generate_diff_invalid_inputs(file1, file2, format_name, expected_file):
     """Тестирование на некорректные входные данные"""
     file1_path = FIXTURES_DIR / file1
     file2_path = FIXTURES_DIR / file2
-    if format_name == 'invalid_format':
-        # Проверка на неправильный формат
+    if format_name == 'invalid_format': # Неправильный формат
         with pytest.raises(ValueError, match="Unknown format: invalid_format"):
             generate_diff(file1_path, file2_path, format_name)
     else:
-        # Проверка на несуществующие файлы
-        with pytest.raises(FileNotFoundError):
+        with pytest.raises(FileNotFoundError): # Нет файла
             generate_diff(file1_path, file2_path, format_name)
