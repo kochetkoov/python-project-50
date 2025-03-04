@@ -1,5 +1,3 @@
-import pytest
-
 from gendiff.formatters.stylish import format_value
 
 
@@ -10,4 +8,4 @@ def test_format_value():
     assert format_value(None) == 'null'
     assert format_value(42) == '42'
     assert format_value('string') == 'string'
-    assert format_value({'key': 'value'}) == "{\n        key: value\n    }"  # Пример для словаря
+    assert format_value({'key': 'value'}) == "{\n        key: value\n    }"
