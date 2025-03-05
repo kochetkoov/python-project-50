@@ -1,6 +1,6 @@
 from gendiff.formatters.json import format_json
 from gendiff.formatters.plain import format_plain
-from gendiff.formatters.stylish import format_stylish
+from gendiff.formatters.stylish import get_stylish
 from gendiff.parser import load_data
 
 
@@ -39,7 +39,7 @@ def generate_diff(file_path1, file_path2, format_name='stylish'):
     diff = build_diff(data1, data2)
 
     if format_name == 'stylish':
-        return f"{{\n{format_stylish(diff)}\n}}"
+        return get_stylish(diff)
     elif format_name == 'plain':
         return format_plain(diff)
     elif format_name == 'json':

@@ -1,6 +1,6 @@
 from unittest import mock
 
-from gendiff.scripts.cli import parse_arguments
+from gendiff.cli import parse_arguments
 
 
 # Тест, проверяющий правильность парсинга аргументов
