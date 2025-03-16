@@ -33,7 +33,7 @@ def handle_updated_plain(result, path, info):
 
 def handle_nested_plain(result, path, info):
     """Helper function to process nested unchanged keys"""
-    nested_lines = format_plain(info['children'], path)
+    nested_lines = get_plain(info['children'], path)
     result.append(nested_lines)
 
 
