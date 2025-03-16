@@ -46,7 +46,7 @@ STATUS_HANDLERS_PLAIN = {
 }
 
 
-def format_plain(diff, parent=''):
+def get_plain(diff, parent=''):
     """Formatting the output of the diff with plain formatter"""
     result = []
 
